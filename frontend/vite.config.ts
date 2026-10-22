@@ -5,6 +5,7 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [react()],
   resolve: { alias: { "@": path.resolve(__dirname, "src") } },
+  envDir: path.resolve(__dirname, ".."), // one .env at the repo root serves backend and frontend
   server: { port: 5173 },
   test: {
     environment: "jsdom",
