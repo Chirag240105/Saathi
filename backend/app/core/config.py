@@ -22,6 +22,9 @@ class Settings(BaseSettings):
     gemini_api_key: str = ""
     groq_api_key: str = ""
     mcp_public_url: str = "http://localhost:8000/mcp"
+    mcp_local_url: str = ""  # optional override for the simulator client
+    gemini_model: str = "gemini-2.0-flash"
+    groq_model: str = "llama-3.3-70b-versatile"
 
     @field_validator("shared_secret", "telegram_bot_token", mode="before")
     @classmethod

@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "saathi": {
+      "url": "http://localhost:8000/mcp",
+      "transport": "streamable-http",
+      "headers": { "X-Saathi-Source": "simulator" },
+      "auth_header": "X-Saathi-Key",
+      "tool_allowlist": [
+        "get_today_schedule", "log_medication_taken", "daily_checkin", "report_concern",
+        "add_appointment"
+      ]
+    }
+  }
+}
