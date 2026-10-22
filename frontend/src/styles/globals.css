@@ -1,0 +1,55 @@
+@import "@fontsource/atkinson-hyperlegible/400.css";
+@import "@fontsource/atkinson-hyperlegible/700.css";
+@import "@fontsource-variable/inter";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens. HSL channels so Tailwind can apply opacity. */
+:root {
+  --sand: 41 56% 94%;
+  --sand-deep: 38 40% 88%;
+  --surface: 0 0% 100%;
+  --ink: 243 47% 20%;       /* deep indigo, 14:1 on sand */
+  --ink-soft: 243 20% 36%;  /* 7:1 on sand */
+  --line: 38 25% 82%;
+  --teal: 175 78% 26%;      /* primary, 5.9:1 on white */
+  --teal-dark: 177 80% 18%;
+  --teal-wash: 174 45% 90%;
+  --amber: 38 92% 50%;
+  --amber-wash: 45 100% 90%;
+  --amber-ink: 26 85% 22%;
+  --coral: 8 80% 58%;
+  --coral-wash: 8 90% 93%;
+  --coral-ink: 5 70% 28%;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-sand font-sans text-ink antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  :focus-visible {
+    outline: 3px solid hsl(var(--teal));
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+  h1, h2, h3 { line-height: 1.2; letter-spacing: -0.01em; }
+}
+
+@layer utilities {
+  .font-numeric { font-family: "Inter Variable", Inter, system-ui, sans-serif; font-variant-numeric: tabular-nums; }
+  .sr-only-live { @apply sr-only; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
