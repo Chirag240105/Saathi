@@ -11,10 +11,10 @@
   --sand: 41 56% 94%;
   --sand-deep: 38 40% 88%;
   --surface: 0 0% 100%;
-  --ink: 243 47% 20%;       /* deep indigo, 14:1 on sand */
-  --ink-soft: 243 20% 36%;  /* 7:1 on sand */
+  --ink: 243 47% 20%; /* deep indigo, 14:1 on sand */
+  --ink-soft: 243 20% 36%; /* 7:1 on sand */
   --line: 38 25% 82%;
-  --teal: 175 78% 26%;      /* primary, 5.9:1 on white */
+  --teal: 175 78% 26%; /* primary, 5.9:1 on white */
   --teal-dark: 177 80% 18%;
   --teal-wash: 174 45% 90%;
   --amber: 38 92% 50%;
@@ -26,7 +26,9 @@
 }
 
 @layer base {
-  html { -webkit-text-size-adjust: 100%; }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
   body {
     @apply bg-sand font-sans text-ink antialiased;
     font-size: 1.0625rem;
@@ -37,19 +39,43 @@
     outline-offset: 3px;
     border-radius: 0.5rem;
   }
-  h1, h2, h3 { line-height: 1.2; letter-spacing: -0.01em; }
+  h1,
+  h2,
+  h3 {
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
 }
 
 @layer utilities {
-  .font-numeric { font-family: "Inter Variable", Inter, system-ui, sans-serif; font-variant-numeric: tabular-nums; }
-  .sr-only-live { @apply sr-only; }
+  .font-numeric {
+    font-family: "Inter Variable", Inter, system-ui, sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+  .sr-only-live {
+    @apply sr-only;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+[role="dialog"][data-state="open"] {
+  animation: pop-in 0.18s ease-out;
 }

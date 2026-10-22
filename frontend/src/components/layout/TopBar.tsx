@@ -1,8 +1,14 @@
-import { Mic, RotateCcw } from "lucide-react";
+import { MoreVertical, Mic, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { api } from "@/lib/api";
 
 export function TopBar() {
@@ -28,10 +34,18 @@ export function TopBar() {
         Demo mode · fictional data
       </span>
       <div className="flex items-center gap-2">
-        <Button variant="ghost" onClick={resetDemo} disabled={busy} aria-label="Reset demo data">
-          <RotateCcw className="h-5 w-5" aria-hidden="true" />
-          <span className="hidden sm:inline">Reset demo</span>
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" aria-label="Demo tools" disabled={busy}>
+              <MoreVertical className="h-5 w-5" aria-hidden="true" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem onSelect={() => void resetDemo()}>
+              <RotateCcw className="h-5 w-5" aria-hidden="true" /> Reset demo data
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         <Button asChild variant="outline">
           <Link to="/elder">
             <Mic className="h-5 w-5" aria-hidden="true" />

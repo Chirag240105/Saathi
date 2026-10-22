@@ -22,12 +22,12 @@ def register(mcp: FastMCP) -> None:
             if r.status == "unknown":
                 return reply.med_unknown(r.names or [])
             assert r.medication is not None or r.status == "all_done"
-            label = r.medication.name if r.medication else "medicine"
+            label = reply.plain(r.medication.name) if r.medication else "medicine"
             if r.status == "duplicate":
                 return reply.med_duplicate(label)
             if r.status == "all_done":
                 return reply.med_all_done(label)
             nxt = r.next_slot
-            nxt_text = (f"your {nxt.medication.name} {reply.spoken_time(nxt.at)}".replace(
-                f"{nxt.medication.name} ", f"{nxt.medication.name} at ", 1) if nxt else None)
+            nxt_text = (f"your {reply.plain(nxt.medication.name)} at {reply.spoken_time(nxt.at)}"
+                        if nxt else None)
             return reply.med_logged(label, nxt_text)

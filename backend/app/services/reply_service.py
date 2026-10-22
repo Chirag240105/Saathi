@@ -47,6 +47,11 @@ def spoken_day(dt: datetime, now: datetime) -> str:
     return f"on {d.day} {d:%B}"
 
 
+def plain(title: str) -> str:
+    """Lower-case the first letter for mid-sentence speech, keeping acronyms ("BP tablet")."""
+    return title if title[:2].isupper() else title[:1].lower() + title[1:]
+
+
 def join_words(items: list[str]) -> str:
     if not items:
         return ""

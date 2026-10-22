@@ -59,7 +59,9 @@ export function LandingPage() {
       </div>
 
       <footer className="rounded-control bg-amber-wash p-4 text-amber-ink">
-        <p className="font-bold">Saathi reminds and keeps a record. It does not give medical advice.</p>
+        <p className="font-bold">
+          Saathi reminds and keeps a record. It does not give medical advice.
+        </p>
         <p>{EMERGENCY_LINE}</p>
       </footer>
     </main>

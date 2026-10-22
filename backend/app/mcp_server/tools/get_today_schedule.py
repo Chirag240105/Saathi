@@ -8,10 +8,6 @@ from app.services.elder_service import primary_elder
 from app.services.schedule_service import build_schedule, parse_day
 
 
-def plain(title: str) -> str:
-    return title if title[:2].isupper() else title[:1].lower() + title[1:]
-
-
 def register(mcp: FastMCP) -> None:
     @mcp.tool()
     @tracked("get_today_schedule")
@@ -29,8 +25,8 @@ def register(mcp: FastMCP) -> None:
             elder = primary_elder(s)
             sched = build_schedule(s, elder.id, day)
             is_today = day == parse_day(None, now)
-            items = [(f"your {x.medication.name}", x.at) for x in sched.pending]
-            items += [(plain(a.title), a.starts_at) for a in sched.appointments
+            items = [(f"your {reply.plain(x.medication.name)}", x.at) for x in sched.pending]
+            items += [(reply.plain(a.title), a.starts_at) for a in sched.appointments
                       if not is_today or a.starts_at >= now]
             items.sort(key=lambda i: i[1])
             label = "today" if is_today else reply.spoken_day(slot_at(day, "12:00"), now)
